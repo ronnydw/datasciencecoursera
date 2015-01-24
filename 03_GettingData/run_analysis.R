@@ -1,8 +1,9 @@
+# Execute this script in the unpacked Data Folder
+# Data Folder downloaded from: http://archive.ics.uci.edu/ml/machine-learning-databases/00240/ 
+# See README.md for more info on the project
+
 library(dplyr)
 library(reshape2)
-
-# go to the folder where the raw data in unzipped
-setwd("Desktop/project-assignment/UCI HAR Dataset")
 
 # read X features for test set
 Xtest <- read.table("test/X_test.txt", header=FALSE)
@@ -80,3 +81,6 @@ tidy <- dcast(fullMelt, subject + activity ~ variable, value.var = "value", mean
 dim(tidy)
 str(tidy)
 summary(tidy)
+
+# write the result to result.txt
+write.table(tidy, file = "result.txt", row.names = FALSE)
